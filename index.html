@@ -155,6 +155,64 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-ASP-NET-MVC-Bundle特性" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/05/12/ASP-NET-MVC-Bundle特性/">ASP.NET MVC Bundle特性</a>
+    </h1>
+  
+
+        
+        <a href="/2017/05/12/ASP-NET-MVC-Bundle特性/" class="archive-article-date">
+  	<time datetime="2017-05-12T06:04:29.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-05-12</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>经过一个月的时间开发，项目经理要求把项目部署到服务器上，之前一直是在开发环境下运行的，结果，刚换到服务器上，就出现了很多毛病。</p>
+<p>本文章仅仅阐述Bundle所引发的错误及解决方案。</p>
+<h2 id="Bundle-特性"><a href="#Bundle-特性" class="headerlink" title="Bundle 特性"></a>Bundle 特性</h2><p>它用来将 JavaScript 和 CSS 进行压缩（多个文件可以打包成一个文件），并且可以区分调试和非调试，在调试时不进行压缩，以原始方式显示出来，以方便查找问题。详情请异步官方文档 </p>
+<h2 id="问题分析"><a href="#问题分析" class="headerlink" title="问题分析"></a>问题分析</h2><p>当你使用bundles.Add方法添加“StyleBundle”和“ScriptBundle”对象的时候一定要注意，“StyleBundle”和”ScriptBundle“的构造函数的参数“virtualPath”指定的虚拟路径一定不能是当前ASP.NET项目中真实存在的一个文件夹路径，否则当你把你的站点部署到IIS上后，会发现MVC页面上用@Styles.Render和@Scripts.Render生成的url路径会被IIS拒绝，IIS提示 禁止访问 403错误。</p>
+<h4 id="临床反应："><a href="#临床反应：" class="headerlink" title="临床反应："></a>临床反应：</h4><p>页面显示和开发环境下的不一样，毫无布局可言，就好像没有引入CSS的样子。F12，在Console中能看到 403 的错误。</p>
+<p>403: 表示资源不可用。服务器理解客户的请求，但拒绝处理它，通常由于服务器上文件或目录的权限设置导致的WEB访问错误。</p>
+<h2 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h2><p>根据问题问题分析可以发现，</p>
+<ol>
+<li>“StyleBundle”和”ScriptBundle“的构造函数的构造函数不能是ASP.NET项目中的真实路径，所以请规避这个问题</li>
+<li>直接导入需要的 JavaScript 和 CSS ，不要使用 Bundle 特性来导入需要的文件</li>
+</ol>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/05/12/ASP-NET-MVC-Bundle特性/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
+  
     <article id="post-hello-world" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
